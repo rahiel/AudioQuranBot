@@ -1,0 +1,4 @@
+aioredis
+aiotg
+hiredis
+uvloop
