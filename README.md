@@ -6,8 +6,12 @@ AudioQuranBot is a bot on Telegram that shares audio recitations of the Holy
 Qur'an. [Talk with it][AudioQuranBot] to request audio tracks of surahs recited
 by [Shaykh Mahmoud Khalil al-Husary][qari].
 
+Also see [BismillahBot][], a bot that serves an English translation, tafsir and
+Arabic of individual verses.
+
 [AudioQuranBot]: https://telegram.me/AudioQuranBot
 [qari]: https://en.wikipedia.org/wiki/Mahmoud_Khalil_Al-Hussary
+[BismillahBot]: https://github.com/rahiel/BismillahBot
 
 
 # Installation

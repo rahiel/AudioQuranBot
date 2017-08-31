@@ -44,8 +44,8 @@ def usage(chat: Chat, match):
         "﷽‎\n"
         "Send the number of a surah and I'll send you its audio recitation by "
         "Shaykh Mahmoud Khalil al-Husary. For example send <b>36</b> and you'll "
-        "receive the recitation of surah Yasin. Send /index to see a list of available "
-        "surahs."
+        "receive the recitation of surah Yasin. Send /index to see a list of available surahs.\n\n"
+        "Talk to @BismillahBot for an English translation, tafsir and Arabic of individual verses."
     )
     return chat.send_text(text, parse_mode="HTML")
 
