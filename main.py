@@ -1,5 +1,5 @@
 # AudioQuranBot -- Listen to the Holy Qur'an on Telegram
-# Copyright (C) 1438 AH  Rahiel Kasim
+# Copyright (C) 1438-1439 AH  Rahiel Kasim
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import asyncio
 import signal
+from time import time
 
 import aioredis
 import uvloop
@@ -40,6 +41,7 @@ def save_file(filename: str, file_id: str):
 
 @bot.command(r"/(?:start|help)")
 def usage(chat: Chat, match):
+    log(chat)
     text = (
         "﷽‎\n"
         "Send the number of a surah and I'll send you its audio recitation by "
@@ -52,6 +54,7 @@ def usage(chat: Chat, match):
 
 @bot.command(r"/about")
 def about(chat: Chat, match):
+    log(chat)
     text = (
         "The recitation is by "
         "<a href=\"https://en.wikipedia.org/wiki/Mahmoud_Khalil_Al-Hussary\">Shaykh Mahmoud Khalil al-Husary</a> "
@@ -63,11 +66,13 @@ def about(chat: Chat, match):
 
 @bot.command(r"/index")
 def index(chat: Chat, match):
+    log(chat)
     return chat.send_text(quran_index, parse_mode="HTML")
 
 
 @bot.command(r"/?(\d+)")
 async def audio(chat: Chat, match):
+    log(chat)
     surah = int(match.group(1))
     if not (1 <= surah <= 114):
         return chat.send_text("Surah does not exist!")
@@ -116,6 +121,17 @@ async def audio(chat: Chat, match):
 
         file_id = response["result"]["audio"]["file_id"]
         await save_file(filename, file_id)
+
+
+@bot.command(r".+")
+def undefined(chat: Chat, match):
+    log(chat)
+
+
+def log(chat: Chat):
+    chat_id = chat.message["chat"]["id"]
+    text = chat.message["text"].replace("\n", " ")
+    print("{}:{:.3f}:{}".format(chat_id, time(), text), flush=True)
 
 
 async def main():
