@@ -1,4 +1,5 @@
 aioredis
 aiotg
 hiredis
+ujson
 uvloop

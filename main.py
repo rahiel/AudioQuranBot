@@ -18,6 +18,7 @@ import signal
 from time import time
 
 import aioredis
+import ujson as json
 import uvloop
 from aiotg import Bot, Chat
 from bismillahbot import Quran, make_index
@@ -25,7 +26,7 @@ from bismillahbot import Quran, make_index
 from secret import token
 
 
-bot = Bot(api_token=token)
+bot = Bot(api_token=token, json_serialize=json.dumps, json_deserialize=json.loads)
 quran_index = make_index()
 redis = None
 redis_namespace = "aqb:"
